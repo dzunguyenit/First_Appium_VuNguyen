@@ -1,11 +1,9 @@
 package appium;
 
 import java.net.MalformedURLException;
-import java.net.URL;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -19,18 +17,18 @@ public class Contacts extends AbstractPage {
 
 	@BeforeClass
 	public void beforeClass() {
-		desireCapabilities.setCapability("BROWSER_NAME", "Android");
-		desireCapabilities.setCapability("VERSION", "6.0");
-		desireCapabilities.setCapability("deviceName", "And-1");
-		desireCapabilities.setCapability("platformName", "Android");
-		desireCapabilities.setCapability("appPackage", "com.android.contacts");
-		desireCapabilities.setCapability("appActivity", "com.android.contacts.activities.PeopleActivity");
+		setBrowserName(desireCapabilities, "BROWSER_NAME", "Android");
+		setVersion(desireCapabilities, "VERSION", "6.0");
+		setDevice(desireCapabilities, "deviceName", "And-1");
+		setPlatform(desireCapabilities, "platformName", "Android");
+		setPackage(desireCapabilities, "appPackage", "com.android.contacts");
+		setActivity(desireCapabilities, "appActivity", "com.android.contacts.activities.PeopleActivity");
 	}
 
 	@Test
 	public void TC_01_Contacts() throws MalformedURLException, Exception {
 
-		driver = new RemoteWebDriver(new URL("http://127.0.0.1:4723/wd/hub"), desireCapabilities);
+		driver = newServerAppium(desireCapabilities, driver, "http://127.0.0.1:4723/wd/hub");
 
 		waitForControlVisible(driver, "//*[@text='Create a new contact']");
 		clickToElement(driver, "//*[@text='Create a new contact']");
@@ -60,7 +58,8 @@ public class Contacts extends AbstractPage {
 		// "//android.view.View[@class='android.widget.Spinner']", "Car");
 
 		// Select select = new Select(
-		// driver.findElement(By.xpath("//android.view.View[@class='android.widget.Spinner']")));
+		//
+		// driver.findElement(By.xpath("//android.view.View[@class='android.widget.Spinner']"));
 		// select.selectByVisibleText("Car");
 		// driver.findElement(By.name("Email")).sendKeys("12345@gmail.com");
 	}

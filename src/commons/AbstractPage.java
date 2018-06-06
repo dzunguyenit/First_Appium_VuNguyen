@@ -1,5 +1,7 @@
 package commons;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -12,6 +14,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -20,6 +24,36 @@ import org.testng.Reporter;
 
 public class AbstractPage {
 	private int timeouts = 20;
+
+	// Appium
+	protected WebDriver newServerAppium(DesiredCapabilities desireCapabilities, WebDriver driver, String url)
+			throws MalformedURLException {
+		return new RemoteWebDriver(new URL(url), desireCapabilities);
+	}
+
+	protected void setBrowserName(DesiredCapabilities desireCapabilities, String browserName, String platform) {
+		desireCapabilities.setCapability(browserName, platform);
+	}
+
+	protected void setVersion(DesiredCapabilities desireCapabilities, String platformVersion, String version) {
+		desireCapabilities.setCapability(platformVersion, version);
+	}
+
+	protected void setDevice(DesiredCapabilities desireCapabilities, String deviceName, String device) {
+		desireCapabilities.setCapability(deviceName, device);
+	}
+
+	protected void setPlatform(DesiredCapabilities desireCapabilities, String platformName, String platform) {
+		desireCapabilities.setCapability(platformName, platform);
+	}
+
+	protected void setPackage(DesiredCapabilities desireCapabilities, String appPackage, String pathAppPackage) {
+		desireCapabilities.setCapability(appPackage, pathAppPackage);
+	}
+
+	protected void setActivity(DesiredCapabilities desireCapabilities, String appActivity, String pathAppActivity) {
+		desireCapabilities.setCapability(appActivity, pathAppActivity);
+	}
 
 	// Web Browser
 	protected void openUrl(WebDriver driver, String url) {
