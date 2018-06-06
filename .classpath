@@ -15,6 +15,7 @@
 	<classpathentry kind="lib" path="lib/java-client-6.0.0-BETA4.jar"/>
 	<classpathentry kind="lib" path="lib/okhttp-3.9.1.jar"/>
 	<classpathentry kind="lib" path="lib/okio-1.13.0.jar"/>
+	<classpathentry kind="lib" path="lib/log4j-1.2.12.jar"/>
 	<classpathentry kind="con" path="org.testng.TESTNG_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
